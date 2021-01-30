@@ -4,7 +4,7 @@ import os
 import pathlib
 
 
-url = "https://www.alloschool.com/category/middle-school"
+url = "https://www.alloschool.com/category/primary"
 res = req.get(url)
 doc  = BeautifulSoup(res.text,'html.parser')
 # targetd variables 
@@ -59,8 +59,19 @@ for i in unlisted_lists:
     for r in nested_lists:
         # print(r.a.get('title'))
         pdf_link = r.a.get('href')
-        file_file_name = str(r.a.get('title'))[0:4]
-        os.mkdir("./"+file_name+"/"+file_file_name)
+        for ir in range(0,10):
+            if not os.path.exists("./"+file_name+"/"+str(r.a.get('title'))[0:4]):    
+                file_file_name = str(r.a.get('title'))[0:4]
+                os.mkdir("./"+file_name+"/"+file_file_name)
+                break
+            else:
+                file_file_name = str(r.a.get('title'))[0:4]+str(ir)
+                if not os.path.exists("./"+file_name+"/"+file_file_name):
+                    os.mkdir("./"+file_name+"/"+file_file_name)
+                    break
+                else:
+                    continue
+
         res3 = req.get(pdf_link)
         doc3 = BeautifulSoup(res3.text,'html.parser')
         get_pdf_link(doc3,file_name,file_file_name)
