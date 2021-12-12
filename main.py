@@ -13,7 +13,6 @@ def main():
     elif x == 3:
         scraping = app1(0)
     elif x == 0:
-        print('Bye !')
         sys.exit()
     else:
         main()
