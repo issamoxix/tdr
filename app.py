@@ -35,7 +35,6 @@ class app:
                     link_link_href = str(link_href).split('/')
                     os.mkdir('./'+self.endingPath+'/' +
                              link_link_href[len(link_link_href)-1])
-                    # print(link_link_href[len(link_link_href)-1]) # fach name
                     links_for_fach.append(link_href)
             except:
                 error = 1
@@ -46,11 +45,9 @@ class app:
             doc3 = BeautifulSoup(_dom, 'html.parser')
             div_div = doc3.find('div', ["category"]).ul
 
-            # print(used[len(used)-1]) #uncomment for debugg
             for u in div_div.find_all('li'):
                 doc4 = BeautifulSoup(self._get_request(
                     u.a.get('href')).text, "html.parser")
-                # print(doc4.find('title').get_text())
                 if os.path.exists("./"+str(used[len(used)-1])+"/"+str(doc4.find('title').get_text())[0:5]):
                     for fi in range(0, 19):
                         if not os.path.exists("./"+str(used[len(used)-1])+"/"+str(doc4.find('title').get_text())[0:5]+str(fi)):
@@ -63,8 +60,5 @@ class app:
                     os.mkdir("./"+self.endingPath+'/' +
                              str(used[len(used)-1])+"/"+str(doc4.find('title').get_text())[0:5])
                     uo = str(doc4.find('title').get_text())[0:5]
-                    # get_pdf_link(doc4,r'\'+str(used[len(used)-1])+r'\'+str(doc4.find('title').get_text())[0:5])
                 print("./"+str(used[len(used)-1]))
-                # print(f'\{str(used[len(used)-1])}\{str(doc4.find('title').get_text())[0:5])}')
                 get_pdf_link(doc4, str(used[len(used)-1]), uo)
-        # get pdf page and links

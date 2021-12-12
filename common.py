@@ -15,7 +15,6 @@ def pdf_dwl(self, filename, pdfname, link):
 
 
 def get_pdf_link(self, doc, pdf_1, pdf_2):
-    # pdf_n = f'\{pdf_1}\{pdf_2}' #uncomment for window
     pdf_n = '/'+pdf_1+'/'+pdf_2
     course_link = []
     pdf_links = []
@@ -30,10 +29,6 @@ def get_pdf_link(self, doc, pdf_1, pdf_2):
 
                 pdf_dwl(pdf_n, str(
                     doc2.find('title').get_text()), pdf_link)
-                # add_to_file(pdf_link,'./'+str(pdf_1)+'/'+str(pdf_2))
-                # sys.exit() #debugg
-                # course_link.append(link.get('href'))
 
         except:
-            # print('Not a pdf link')
             error = 'Not a pdf link'

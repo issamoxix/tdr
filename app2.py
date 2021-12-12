@@ -30,10 +30,8 @@ class app1:
             print(i.a.get('title'), "######################")
             file_name = str(i.a.get('title'))
             os.mkdir('./'+self.endingPath+'/'+file_name)
-            # getting to the pdf's pages
             nested_lists = i.ul.find_all('li')
             for r in nested_lists:
-                # print(r.a.get('title'))
                 pdf_link = r.a.get('href')
                 for ir in range(0, 10):
                     if not os.path.exists("./"+file_name+"/"+str(r.a.get('title'))[0:4]):
